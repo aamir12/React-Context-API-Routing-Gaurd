@@ -1,8 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import UserContext from '../context/UserContext';
 const Users = () => {
   const userContext = useContext(UserContext);
-  const { userList, status, error } = userContext;
+  const { userList, status, error, fetchUser } = userContext;
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
   return (
     <>
       <h1>Users</h1>

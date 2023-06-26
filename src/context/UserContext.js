@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 const UserContext = React.createContext({
   status: 'idle',
@@ -6,7 +6,7 @@ const UserContext = React.createContext({
   error: null,
 });
 
-export const fetchUser = async () => {
+export const fetchUserAPI = async () => {
   try {
     const responseData = {
       status: false,
@@ -35,7 +35,7 @@ export const UserContextProvider = (props) => {
 
   const fetchData = useCallback(async () => {
     setUserStatus('loading');
-    const response = await fetchUser();
+    const response = await fetchUserAPI();
     if (response.status) {
       setUserList(response.data);
     } else {
@@ -43,10 +43,6 @@ export const UserContextProvider = (props) => {
     }
     setUserStatus('idle');
   }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   return (
     <UserContext.Provider
