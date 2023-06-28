@@ -16,6 +16,8 @@ const Users = () => {
         <div>{JSON.stringify(userList)}</div>
       )}
 
+      {status === 'idle' && userList.length === 0 && <div>No Data Found</div>}
+
       {status === 'idle' && error && <h3>Error: {error}</h3>}
     </>
   );
